@@ -17,7 +17,7 @@ consistent across all of my devices, and 3) install stuff that I use.
 * config: Contains various configuration files (e.g. `.vimrc`,
   `.gitignore`).
 * scripts: Contains convenient scripts and other stuff.
-** `workspace`: Creates a new `tmux` with two panes split vertically. The right
-   pane contains `vim` opened up to `NERDTree` and the left pane is just a
-   terminal. A session name can be supplied with the first argument (e.g.
-   `workspace my-session`).
+  * `workspace`: Creates a new `tmux` session with two panes split vertically. The right
+     pane contains `vim` opened up to `NERDTree`; the left pane is just a
+     terminal. A session name can be supplied with the first argument (e.g.
+     `workspace my-session`).
