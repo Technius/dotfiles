@@ -14,7 +14,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'derekwyatt/vim-scala'
 " Misc
-" Plug 'wakatime/vim-wakatime'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 "Basic
@@ -74,7 +74,10 @@ autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType xml setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType cpp setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType c setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType yaml setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType sh setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
+autocmd FileType java setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 autocmd FileType markdown setlocal textwidth=80 wrap
 
 
