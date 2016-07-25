@@ -1,0 +1,4 @@
+*.swp
+*.pyc
+.ensime*
+.DS_STORE

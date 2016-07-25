@@ -1,0 +1,28 @@
+# This is a list of packages to install in a debian-based distro.
+# A GNOME netinst debian installation is assumed
+
+# Basic stuff
+sudo
+git
+ntfs-3g
+
+# Dev environment
+vim
+vim-gnome
+tmux
+
+# Compilers
+gcc
+g++
+ghc
+cmake
+
+# Python
+python
+python-pip
+python3
+python3-pip
+
+# Media
+vlc
+kazam

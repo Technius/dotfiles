@@ -1,0 +1,114 @@
+" Plugins
+call plug#begin()
+" Theme
+Plug 'morhetz/gruvbox'
+Plug 'kien/rainbow_parentheses.vim'
+" Navigation
+Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+" Intelligent editing
+Plug 'Shougo/neocomplete.vim'
+Plug 'ensime/ensime-vim'
+" Language
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'derekwyatt/vim-scala'
+" Misc
+" Plug 'wakatime/vim-wakatime'
+call plug#end()
+
+"Basic
+syntax on
+filetype plugin indent on
+
+
+" Powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2
+
+
+
+" Theme settings
+colorscheme gruvbox
+let g:gruvbox_contrast_dark="soft"
+set background=dark
+
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
+
+" Terminal fixes
+" set t_Co=256
+
+
+
+" Line numbers
+" set number
+
+
+
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+
+
+" Configure json plugin
+let g:vim_json_syntax_conceal = 0
+
+
+
+" Format settings
+autocmd FileType css setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType json setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType lua setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType xml setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType cpp setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType yaml setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType markdown setlocal textwidth=80 wrap
+
+
+
+" Enable neocomplete
+let g:neocomplete#enable_at_startup = 1
+
+" Disable auto popup
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#disable_auto_complete=1
+"
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" Tab completion
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" Close on backspace
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" Enable omni completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
