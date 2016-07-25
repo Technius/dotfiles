@@ -4,7 +4,7 @@ PKGS=$(cat debian-pkgs | sed -re 's/#.*//g' -e '/^\s*$/d')
 
 is_installed() {
     local pkgname=$1
-    dpkg -l | grep -q $pkgname
+    dpkg -s $pkgname > /dev/null 2>&1
 }
 
 install_if_needed() {
