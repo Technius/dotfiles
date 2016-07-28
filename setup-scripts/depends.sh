@@ -14,6 +14,14 @@ fi
 mkdir -p ~/.vim/autoload
 wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 
+# Setup neovim
+if [[ -n $(which nvim) ]]; then
+    mkdir -p ~/.config/nvim/autoload
+    cp ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/plug.vim
+    # Dependencies for vim-ensime
+    pip install --user websocket-client sexpdata
+fi
+
 # Setup powerline
 pip install --user powerline-status
 # Install powerline fonts

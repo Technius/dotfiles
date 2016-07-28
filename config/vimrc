@@ -1,4 +1,4 @@
-" Plugins
+" Plugins (vim + nvim)
 call plug#begin()
 " Theme
 Plug 'morhetz/gruvbox'
@@ -6,16 +6,23 @@ Plug 'kien/rainbow_parentheses.vim'
 " Navigation
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
-" Intelligent editing
-Plug 'Shougo/neocomplete.vim'
-Plug 'ensime/ensime-vim'
 " Language
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'derekwyatt/vim-scala'
+Plug 'ensime/ensime-vim'
 Plug 'eagletmt/neco-ghc'
 " Misc
 Plug 'wakatime/vim-wakatime'
+
+" Neovim only
+if has("nvim")
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'vim-airline/vim-airline'
+" Vim only
+else
+    Plug 'Shougo/neocomplete.vim'
+endif
 call plug#end()
 
 "Basic
@@ -24,6 +31,9 @@ filetype plugin indent on
 
 
 " Powerline
+if has('nvim')
+    let g:airline_powerline_fonts = 1
+else
 python << endpython
 try:
   from powerline.vim import setup as powerline_setup
@@ -32,6 +42,7 @@ try:
 except ImportError:
   pass
 endpython
+endif
 set laststatus=2
 
 
@@ -88,32 +99,33 @@ autocmd FileType markdown setlocal textwidth=80 wrap
 
 
 
-" Enable neocomplete
-let g:neocomplete#enable_at_startup = 1
+" Enable neocomplete/deoplete
+if has('nvim') 
+    call deoplete#initialize()
+    " Close on backspace
+    inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+else
+    let g:neocomplete#enable_at_startup = 1
+    " Close on backspace
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+endif
 
-" Disable auto popup
-" let g:acp_enableAtStartup = 0
-" let g:neocomplete#disable_auto_complete=1
-"
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 " Tab completion
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ neocomplete#start_manual_complete()
-function! s:check_back_space() "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-" Close on backspace
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <silent> <expr><TAB>  pumvisible() ? "\<C-n>" :
+      \ <SID>start_completion()
+function! s:start_completion()
+    if has('nvim')
+        return deoplete#mappings#manual_complete()
+    else
+        return neocomplete#start_manual_complete()
+    endif
+endfunction
 
 " Enable omni completion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

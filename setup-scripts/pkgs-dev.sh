@@ -4,6 +4,22 @@ source $(dirname $0)/util.sh
 
 # Versions
 scala_ver="2.11.8"
+neovim_ver="0.1.4" # tagged release on GitHub
+
+if prompt_install "neovim"; then
+    # I'll just manually compile neovim until it's in official, main repos
+    wget "https://github.com/neovim/neovim/archive/v$neovim_ver.tar.gz" -O /tmp/nvim.tar.gz
+    tar /tmp/nvim.tar.gz -C /tmp
+    echo "Installing dependencies"
+    sudo apt-get update
+    sudo apt-get install libtool libtool-bin autoconf automake cmake g++ pkg-config unzip -y
+    echo "Building"
+    (cd /tmp/neovim-$neovim_ver && make CMAKE_BUILD_TYPE=Release)
+    (cd /tmp/neovim-$neovim_ver && sudo make install)
+    pip install --user --upgrade neovim
+    pip3 install --user --upgrade neovim
+    mkdir -p ~/.config/nvim
+fi
 
 if prompt_install "Scala"; then
     wget http://downloads.lightbend.com/scala/$scala_ver/scala-$scala_ver.deb \

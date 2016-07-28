@@ -10,5 +10,6 @@ done
 
 # Symlink configs
 ln -sf $thisdir/config/vimrc ~/.vimrc
+ln -sf $thisdir/config/vimrc ~/.config/nvim/init.vim
 ln -sf $thisdir/config/tmux.conf ~/.tmux.conf
 ln -sf $thisdir/config/gitignore ~/.gitignore
