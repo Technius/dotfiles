@@ -16,6 +16,7 @@ gcc
 g++
 ghc
 cmake
+openjdk-8-jdk
 
 # Python
 python
