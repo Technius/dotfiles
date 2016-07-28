@@ -1,7 +1,7 @@
 #!/bin/bash
 # Installs packages; assumes root
 
-PKGS=$(cat debian-pkgs | sed -re 's/#.*//g' -e '/^\s*$/d')
+PKGS=$(cat $(dirname $0)/../debian-pkgs | sed -re 's/#.*//g' -e '/^\s*$/d')
 
 is_installed() {
     local pkgname=$1

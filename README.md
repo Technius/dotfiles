@@ -9,9 +9,10 @@ easier to 1) recover from future disk failures, 2) keep my configuration files
 consistent across all of my devices, and 3) install stuff that I use.
 
 ## Layout
-* `setup_pkgs.sh`: (Requires root permissions) Installs packages listed in
-  `debian-pkgs` and then installs some PPAs.
-* `setup.sh`: Installs user dependencies.
+* `setup-scripts`: Contains installation scripts.
+  * `depends.sh`: Installs runtime dependencies for installed packages.
+  * `pkgs.sh`: (Requires root permissions) Installs packages listed in
+    `debian-pkgs` and then installs some PPAs.
 * `makelinks.sh`: Symlinks stuff from `config` and `scripts`. View it to see
   which files are symlinked.
 * config: Contains various configuration files (e.g. `.vimrc`,
