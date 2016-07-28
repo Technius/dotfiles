@@ -16,3 +16,6 @@ if prompt_install "Scala SBT"; then
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
     apt-get update && apt-get install sbt
 fi
+
+prompt_install "Haskell Stack" "which stack" && \
+    wget -qO- https://get.haskellstack.org/ | sh
