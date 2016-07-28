@@ -12,7 +12,11 @@ consistent across all of my devices, and 3) install stuff that I use.
 * `setup-scripts`: Contains installation scripts.
   * `depends.sh`: Installs runtime dependencies for installed packages.
   * `pkgs.sh`: (Requires root permissions) Installs packages listed in
-    `debian-pkgs` and then installs some PPAs.
+    `debian-pkgs`.
+  * `pkgs-dev.sh`: (Requires root permissions) Installs development tools.
+  * `pkgs-extra.sh`: (Requires root permissions) Installs extra stuff like
+    media players.
+  * `util.sh`: Contains utility functions for the other scripts.
 * `makelinks.sh`: Symlinks stuff from `config` and `scripts`. View it to see
   which files are symlinked.
 * config: Contains various configuration files (e.g. `.vimrc`,

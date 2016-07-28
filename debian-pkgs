@@ -23,6 +23,8 @@ python-pip
 python3
 python3-pip
 
-# Media
-vlc
-kazam
+# Needed to install from https sources
+apt-transport-https
+
+# Needed to easily install PPAs
+software-properties-common
