@@ -23,9 +23,14 @@ filetype plugin indent on
 
 
 " Powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+python << endpython
+try:
+  from powerline.vim import setup as powerline_setup
+  powerline_setup()
+  del powerline_setup
+except ImportError:
+  pass
+endpython
 set laststatus=2
 
 
