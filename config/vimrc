@@ -13,6 +13,7 @@ Plug 'ensime/ensime-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'derekwyatt/vim-scala'
+Plug 'eagletmt/neco-ghc'
 " Misc
 Plug 'wakatime/vim-wakatime'
 call plug#end()
@@ -120,3 +121,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
+" Detailed types for haskell
+let g:necoghc_enable_detailed_browse = 1

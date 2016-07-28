@@ -21,3 +21,11 @@ mkdir -p ~/.fonts/ ~/.config/fontconfig/conf.d/
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf -O ~/.fonts/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf -O ~/.config/fontconfig/conf.d/10-powerline-symbols.conf
 fc-cache -vf ~/.fonts/
+
+if [[ -n $(which stack) ]]; then
+    if [[ -n $(which ghc-mod) ]]; then
+        echo "Installing ghc-mod"
+    fi
+else
+    echo "Haskell Stack not installed, so not installing ghc-mod"
+fi
