@@ -19,6 +19,7 @@ Plug 'wakatime/vim-wakatime'
 if has("nvim")
     Plug 'Shougo/deoplete.nvim'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
 " Vim only
@@ -37,6 +38,7 @@ filetype plugin indent on
 " Powerline
 if has('nvim')
     let g:airline_powerline_fonts = 1
+    let g:airline_theme = 'hybridline'
 else
 python << endpython
 try:
