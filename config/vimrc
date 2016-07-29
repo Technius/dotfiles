@@ -101,7 +101,10 @@ autocmd FileType markdown setlocal textwidth=80 wrap
 
 " Enable neocomplete/deoplete
 if has('nvim') 
-    call deoplete#initialize()
+    let g:deoplete#enable_at_startup = 1
+    if !exists('g:deoplete#omni#input_patterns')
+        let g:deoplete#omni#input_patterns = {}
+    endif
     " Close on backspace
     inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 else
@@ -117,8 +120,14 @@ function! s:my_cr_function()
 endfunction
 
 " Tab completion
-inoremap <silent> <expr><TAB>  pumvisible() ? "\<C-n>" :
+inoremap <silent> <expr><TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ <SID>start_completion()
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~ '\s'
+endfunction "}}}
 function! s:start_completion()
     if has('nvim')
         return deoplete#mappings#manual_complete()
@@ -126,6 +135,9 @@ function! s:start_completion()
         return neocomplete#start_manual_complete()
     endif
 endfunction
+
+" Automatically close any preview windows
+autocmd CompleteDone * pclose!
 
 " Enable omni completion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
