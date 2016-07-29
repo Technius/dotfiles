@@ -19,6 +19,7 @@ if prompt_install "neovim"; then
     pip install --user --upgrade neovim
     pip3 install --user --upgrade neovim
     mkdir -p ~/.config/nvim
+    sudo update-alternatives --install /usr/bin/vim vim "$(which nvim)" 70
 fi
 
 if prompt_install "Scala"; then
