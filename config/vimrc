@@ -19,9 +19,13 @@ Plug 'wakatime/vim-wakatime'
 if has("nvim")
     Plug 'Shougo/deoplete.nvim'
     Plug 'vim-airline/vim-airline'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+    Plug 'junegunn/fzf.vim'
 " Vim only
 else
     Plug 'Shougo/neocomplete.vim'
+    Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+    Plug 'Shougo/unite.vim' "Although I prefer fzf, it has weird issues in tmux
 endif
 call plug#end()
 
@@ -151,3 +155,11 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:haskellmode_completion_ghc = 0
 " Detailed types for haskell
 let g:necoghc_enable_detailed_browse = 1
+
+" Fuzzy finder settings
+if has('nvim')
+    nmap <C-p> :FZF<CR>
+else
+    nmap <C-p> :Unite file_rec/async<CR>
+    call unite#custom#profile('default', 'context', { 'direction': 'botright' })
+endif
