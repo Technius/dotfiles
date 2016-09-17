@@ -13,7 +13,7 @@ prompt_install() {
     local pkgname=$1
     local check_install=$2
     [[ -z "$check_install" ]] && check_install="is_installed $pkgname"
-    eval $check_install
+    eval $check_install > /dev/null
     if [[ $? == 0 ]]; then
         echo "$pkgname is already installed, skipping"
         return 1

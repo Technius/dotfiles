@@ -6,7 +6,7 @@ source $(dirname $0)/util.sh
 scala_ver="2.11.8"
 neovim_ver="0.1.4" # tagged release on GitHub
 
-if prompt_install "neovim"; then
+if prompt_install "neovim" "which nvim"; then
     # I'll just manually compile neovim until it's in official, main repos
     wget "https://github.com/neovim/neovim/archive/v$neovim_ver.tar.gz" -O /tmp/nvim.tar.gz
     tar /tmp/nvim.tar.gz -C /tmp
