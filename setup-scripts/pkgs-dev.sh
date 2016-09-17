@@ -5,6 +5,7 @@ source $(dirname $0)/util.sh
 # Versions
 scala_ver="2.11.8"
 neovim_ver="0.1.4" # tagged release on GitHub
+nodejs_ver="6.x"
 
 if prompt_install "neovim" "which nvim"; then
     # I'll just manually compile neovim until it's in official, main repos
@@ -32,6 +33,12 @@ if prompt_install "Scala SBT"; then
     echo "deb https://dl.bintray.com/sbt/debian /" > /etc/apt/sources.list.d/sbt.list
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
     sudo apt-get update && apt-get install sbt
+fi
+
+if prompt_install "nodejs" "which npm"; then
+    wget -qO- https://deb.nodesource.com/setup_$nodejs_ver | sudo -E bash -
+    sudo apt-get install -y nodejs npm
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
 fi
 
 prompt_install "Haskell Stack" "which stack" && \
