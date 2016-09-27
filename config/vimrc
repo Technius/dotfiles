@@ -12,6 +12,7 @@ Plug 'elzr/vim-json'
 Plug 'derekwyatt/vim-scala'
 Plug 'ensime/ensime-vim'
 Plug 'eagletmt/neco-ghc'
+Plug 'rust-lang/rust.vim'
 " Misc
 Plug 'wakatime/vim-wakatime'
 
