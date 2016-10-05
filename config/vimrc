@@ -23,6 +23,7 @@ if has("nvim")
     Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
+    Plug 'zchee/deoplete-jedi'
 " Vim only
 else
     Plug 'Shougo/neocomplete.vim'
@@ -114,6 +115,9 @@ if has('nvim')
     endif
     " Close on backspace
     inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+    " deoplete-jedi
+    let g:deoplete#sources#jedi#show_docstring = 1
 else
     let g:neocomplete#enable_at_startup = 1
     " Close on backspace
