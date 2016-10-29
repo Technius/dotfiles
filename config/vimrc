@@ -168,6 +168,9 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
+" Automaticaly close HTML tags
+autocmd FileType html imap </ </<C-X><C-O><C-N>
+
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 " Detailed types for haskell
