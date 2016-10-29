@@ -118,6 +118,14 @@ if has('nvim')
 
     " deoplete-jedi
     let g:deoplete#sources#jedi#show_docstring = 1
+
+    " ensime (scala), adapted from Jacoby6000 from
+    " https://github.com/ensime/ensime-vim/issues/282
+    let g:deoplete#omni#input_patterns.scala = [
+      \ '[^. *\t]\.\w*',
+      \ '[:\[,] ?\w*',
+      \ '^import .*'
+      \]
 else
     let g:neocomplete#enable_at_startup = 1
     " Close on backspace
