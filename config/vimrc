@@ -190,3 +190,14 @@ else
     call unite#custom#profile('default', 'context', { 'direction': 'botright' })
 endif
 " }}}
+
+" Additional Keybindings {{{
+let mapleader="\<space>"
+" Reload vim
+nmap <leader>V :source $MYVIMRC<CR>
+" Paste from clipboard
+nmap <leader>p "+p
+nmap <leader>P "+P
+" Copy to clipboard
+vmap <leader>y "+y
+" }}}
