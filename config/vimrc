@@ -1,4 +1,9 @@
-" Plugins (vim + nvim)
+" Enable folding of sections
+" vim: foldmethod=marker foldlevel=0 foldcolumn=3 foldnestmax=3
+"
+" Use 'zo' to open each section and 'zc' to close each section.
+
+" Plugins (vim + nvim) {{{
 call plug#begin()
 " Theme
 Plug 'morhetz/gruvbox'
@@ -16,7 +21,7 @@ Plug 'rust-lang/rust.vim'
 " Misc
 Plug 'wakatime/vim-wakatime'
 
-" Neovim only
+" Neovim only {{{
 if has("nvim")
     Plug 'Shougo/deoplete.nvim'
     Plug 'vim-airline/vim-airline'
@@ -24,20 +29,23 @@ if has("nvim")
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
     Plug 'zchee/deoplete-jedi'
-" Vim only
+" }}}
+" Vim only {{{
 else
     Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
     Plug 'Shougo/unite.vim' "Although I prefer fzf, it has weird issues in tmux
 endif
+" }}}
 call plug#end()
+" }}}
 
-"Basic
+" Basic {{{
 syntax on
 filetype plugin indent on
+" }}}
 
-
-" Powerline
+" Powerline {{{
 if has('nvim')
     let g:airline_powerline_fonts = 1
     let g:airline_theme = 'hybridline'
@@ -52,10 +60,9 @@ except ImportError:
 endpython
 endif
 set laststatus=2
+" }}}
 
-
-
-" Theme settings
+" Theme settings {{{
 colorscheme gruvbox
 let g:gruvbox_contrast_dark="soft"
 set background=dark
@@ -69,8 +76,6 @@ endif
 " Terminal fixes
 " set t_Co=256
 
-
-
 " Line numbers
 " set number
 
@@ -82,14 +87,9 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" }}}
 
-
-" Configure json plugin
-let g:vim_json_syntax_conceal = 0
-
-
-
-" Format settings
+" Format settings {{{
 autocmd FileType css setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType javascript setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType python setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
@@ -104,10 +104,14 @@ autocmd FileType yaml setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType sh setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 autocmd FileType java setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 autocmd FileType markdown setlocal textwidth=80 wrap
+autocmd FileType vim setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 
+" Configure json plugin
+let g:vim_json_syntax_conceal = 0
 
+" }}}
 
-" Enable neocomplete/deoplete
+" Enable neocomplete/deoplete {{{
 if has('nvim') 
     let g:deoplete#enable_at_startup = 1
     if !exists('g:deoplete#omni#input_patterns')
@@ -145,10 +149,10 @@ inoremap <silent> <expr><TAB>
       \ <SID>start_completion()
 " Shift tab to reverse cycle
 inoremap <silent> <expr><s-TAB> pumvisible() ? "\<C-p>" : "\<s-TAB>"
-function! s:check_back_space() abort "{{{
+function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1] =~ '\s'
-endfunction "}}}
+endfunction
 function! s:start_completion()
     if has('nvim')
         return deoplete#mappings#manual_complete()
@@ -176,10 +180,13 @@ let g:haskellmode_completion_ghc = 0
 " Detailed types for haskell
 let g:necoghc_enable_detailed_browse = 1
 
-" Fuzzy finder settings
+" }}}
+
+" Fuzzy finder settings {{{
 if has('nvim')
     nmap <C-p> :FZF<CR>
 else
     nmap <C-p> :Unite file_rec/async<CR>
     call unite#custom#profile('default', 'context', { 'direction': 'botright' })
 endif
+" }}}
