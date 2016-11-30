@@ -43,3 +43,6 @@ fi
 
 prompt_install "Haskell Stack" "which stack" && \
     wget -qO- https://get.haskellstack.org/ | sh
+
+prompt_install "rust" "which cargo" && \
+    wget -qO- https://sh.rustup.rs | sh
