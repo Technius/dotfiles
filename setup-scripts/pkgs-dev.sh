@@ -10,7 +10,7 @@ nodejs_ver="6.x"
 if prompt_install "neovim" "which nvim"; then
     # I'll just manually compile neovim until it's in official, main repos
     wget "https://github.com/neovim/neovim/archive/v$neovim_ver.tar.gz" -O /tmp/nvim.tar.gz
-    tar /tmp/nvim.tar.gz -C /tmp
+    tar xf /tmp/nvim.tar.gz -C /tmp
     echo "Installing dependencies"
     sudo apt-get update
     sudo apt-get install libtool libtool-bin autoconf automake cmake g++ pkg-config unzip -y
