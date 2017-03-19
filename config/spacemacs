@@ -44,6 +44,7 @@ values."
      ;; Languages
      emacs-lisp
      markdown
+     yaml
      python
      rust
      javascript
@@ -51,6 +52,7 @@ values."
      sql
      (scala :variables
             ensime-startup-notification nil)
+     haskell
 
      ;; Integration
      (shell :variables
