@@ -322,6 +322,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; Time display
   (display-time-mode t)
+  ;; Don't yank/paste to system clipboard
+  (setq x-select-enable-clipboard nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
