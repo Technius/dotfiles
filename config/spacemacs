@@ -334,6 +334,8 @@ you should place your code here."
   (display-time-mode t)
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
+  ;; Scala settings (override in configuration-layers doesn't work)
+  (setq scala-indent:align-parameters nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
