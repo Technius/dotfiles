@@ -54,6 +54,7 @@ values."
             scala-auto-insert-asterisk-in-comments t
             ensime-startup-notification nil)
      haskell
+     idris
 
      ;; Integration
      (shell :variables
