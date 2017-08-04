@@ -39,7 +39,11 @@ values."
 
      ;; Completion
      ivy
-     auto-completion
+     (auto-completion :variables
+                      ;; Disable ENTER causing completion.
+                      ;; Use ctrl+l instead
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'cycle)
 
      ;; Languages
      emacs-lisp
@@ -342,6 +346,9 @@ you should place your code here."
   (add-hook 'scala-mode-hook
             (lambda ()
               (setq-local scala-indent:align-parameters nil)))
+  (global-company-mode)
+  (with-eval-after-load 'company
+    (setq company-minimum-prefix-length 3))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
