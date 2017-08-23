@@ -11,12 +11,14 @@ vim
 vim-gnome
 tmux
 
-# Compilers
+# Compilers, languages, etc.
 gcc
 g++
+clang
 ghc
-cmake
 openjdk-8-jdk
+cmake
+meson
 
 # Python
 python
