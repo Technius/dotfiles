@@ -57,8 +57,10 @@ values."
      (scala :variables
             scala-auto-insert-asterisk-in-comments t
             ensime-startup-notification nil)
-     haskell
+     (haskell :variables
+              haskell-completion-backend 'intero)
      idris
+     (c-c++ :variables c-c++-enable-clang-support t)
 
      ;; Integration
      (shell :variables
