@@ -24,7 +24,7 @@ Plug 'wakatime/vim-wakatime'
 
 " Neovim only {{{
 if has("nvim")
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -113,7 +113,7 @@ let g:vim_json_syntax_conceal = 0
 " }}}
 
 " Enable neocomplete/deoplete {{{
-if has('nvim') 
+if has('nvim')
     let g:deoplete#enable_at_startup = 1
     if !exists('g:deoplete#omni#input_patterns')
         let g:deoplete#omni#input_patterns = {}
@@ -193,12 +193,45 @@ endif
 " }}}
 
 " Additional Keybindings {{{
+" This and some keybindings inspired by spacemacs
 let mapleader="\<space>"
-" Reload vim
-nmap <leader>V :source $MYVIMRC<CR>
+
+" === Basics ===
+
 " Paste from clipboard
 nmap <leader>p "+p
 nmap <leader>P "+P
 " Copy to clipboard
 vmap <leader>y "+y
+
+" === File stuff ===
+" Open file fuzzy finder
+nmap <leader>ff :Files<CR>
+" Reload vimrc
+nmap <leader>feR :source $MYVIMRC<CR>
+" Edit vimrc
+nmap <leader>fed :edit $MYVIMRC<CR>
+
+" === Buffers ===
+" Navigate to buffer
+nmap <leader>bb :Buffers<CR>
+" Close buffer
+nmap <leader>bd :bdelete<CR>
+" Next buffer
+nmap <leader>bn :bnext<CR>
+" Previous buffer
+nmap <leader>bp :bprevious<CR>
+" Create new buffer
+nmap <leader>bN :enew<CR>
+
+" === Window shortcuts ===
+" Vertical split
+nmap <leader>wv <C-w>v
+" Horizontal split
+nmap <leader>w- <C-w>s
+" Delete/close window
+nmap <leader>wd <C-w>c
+
+" Exit terminal mode with ESC
+tmap <ESC> <C-\><C-n>
 " }}}
