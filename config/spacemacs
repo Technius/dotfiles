@@ -361,7 +361,7 @@ you should place your code here."
     :syntax-table wasm-wat-syntax-table
     (font-lock-add-keywords 'wasm-text-mode
       '(("module\\|data\\|memory\\|func\\|param\\|result\\|import\\|export" . font-lock-keyword-face)
-        ("$\\([[:alpha:]][[:alpha:]|[:digit:]]+\\)" . font-lock-variable-name-face)))
+        ("$\\([[:alpha:]]\\([[:alpha:]]\\|[[:digit:]]\\)?+\\)" . font-lock-variable-name-face)))
     )
   (add-to-list 'auto-mode-alist '("\\.wat" . wasm-text-mode))
   )
