@@ -18,6 +18,7 @@ wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.v
 if [[ -n $(which nvim) ]]; then
     mkdir -p ~/.config/nvim/autoload
     cp ~/.vim/autoload/plug.vim ~/.config/nvim/autoload/plug.vim
+    pip install --user neovim
     # Dependencies for vim-ensime
     pip install --user websocket-client sexpdata
 fi
