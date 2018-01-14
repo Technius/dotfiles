@@ -14,6 +14,7 @@ consistent across all of my devices, and 3) install stuff that I use.
   * `pkgs.sh`: (Requires root permissions) Installs packages listed in
     `debian-pkgs`.
   * `pkgs-dev.sh`: (Requires root permissions) Installs development tools.
+  * `pkgs-gamedev.sh`: Installs game development tools.
   * `pkgs-extra.sh`: (Requires root permissions) Installs extra stuff like
     media players.
   * `util.sh`: Contains utility functions for the other scripts.
