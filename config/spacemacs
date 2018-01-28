@@ -61,6 +61,7 @@ values."
               haskell-completion-backend 'intero)
      idris
      (c-c++ :variables c-c++-enable-clang-support t)
+     latex
 
      ;; Integration
      (shell :variables
@@ -352,6 +353,8 @@ you should place your code here."
   (add-hook 'scala-mode-hook
             (lambda ()
               (setq-local scala-indent:align-parameters nil)))
+  ;; Latex auto preview
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (global-company-mode)
   (with-eval-after-load 'company
     (setq company-minimum-prefix-length 3))
