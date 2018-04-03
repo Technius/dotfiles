@@ -3,9 +3,9 @@
 source $(dirname $0)/util.sh
 
 if prompt_install "Godot Engine 3" "which godot"; then
-    curl -L -o /tmp/godot3.zip https://downloads.tuxfamily.org/godotengine/3.0/rc2/Godot_v3.0-rc2_x11.64.zip
+    curl -L -o /tmp/godot3.zip https://downloads.tuxfamily.org/godotengine/3.0.2/Godot_v3.0.2-stable_x11.64.zip
     unzip /tmp/godot3.zip -d /tmp/godot3
-    cp /tmp/godot3/Godot_v3.0-rc2_x11.64 ~/.local/bin/godot
+    cp /tmp/godot3/Godot_v3.0.2-stable_x11.64 ~/.local/bin/godot
     chmod +x ~/.local/bin/godot
 fi
 
