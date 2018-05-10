@@ -489,7 +489,13 @@ you should place your code here."
   (global-company-mode)
   (with-eval-after-load 'company
     (setq company-minimum-prefix-length 3))
+  ;; Autoindent on org mode start
   (setq org-startup-indented t)
+  ;; Org mode: default latex packages to use
+  (with-eval-after-load 'org
+    (add-to-list 'org-latex-packages-alist '("" "amssymb" t))
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)))
+  ;; Syntax highlighting for WebAssembly text files
   (defconst wasm-wat-syntax-table
     (let ((table (make-syntax-table)))
       (modify-syntax-entry ?' "\"" table)
