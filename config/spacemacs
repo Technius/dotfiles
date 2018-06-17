@@ -47,6 +47,7 @@ This function should only modify configuration layer settings."
                       ;; Use ctrl+l instead
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'cycle)
+     lsp
 
      ;; Languages
      emacs-lisp
@@ -61,7 +62,8 @@ This function should only modify configuration layer settings."
             scala-auto-insert-asterisk-in-comments t
             ensime-startup-notification nil)
      (haskell :variables
-              haskell-completion-backend 'intero)
+              haskell-completion-backend 'ghci
+              haskell-process-type 'stack-ghci)
      idris
      (c-c++ :variables c-c++-enable-clang-support t)
      latex
@@ -90,6 +92,7 @@ This function should only modify configuration layer settings."
    '(
      gruvbox-theme
      autothemer
+     (lsp-haskell :location (recipe :fetcher github :repo "emacs-lsp/lsp-haskell"))
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -487,6 +490,9 @@ you should place your code here."
   (add-hook 'scala-mode-hook
             (lambda ()
               (setq-local scala-indent:align-parameters nil)))
+  ;; Enable lsp-haskell
+  (require 'lsp-haskell)
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
   ;; Latex auto preview
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (global-company-mode)
@@ -527,7 +533,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yasnippet-snippets yaml-mode web-mode realgud pyvenv proof-general pip-requirements persp-mode paradox overseer orgit org-present org-mime org-download org-brain nameless meghanada live-py-mode link-hint js2-refactor multiple-cursors intero idris-mode hy-mode hl-todo helm-make helm helm-core gruvbox-theme groovy-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-link evil-org evil-nerd-commenter evil-matchit evil-magit eval-sexp-fu ensime sbt-mode emmet-mode editorconfig dumb-jump define-word dante lcr flycheck cython-mode counsel-projectile counsel-css counsel swiper company-web company-coq company-auctex company-anaconda clang-format auto-yasnippet auto-compile packed adaptive-wrap ace-link avy auctex company smartparens haskell-mode yasnippet htmlize rtags ivy magit magit-popup git-commit ghub with-editor alert projectile rust-mode js2-mode simple-httpd spaceline powerline s dash which-key use-package exec-path-from-shell async evil hydra org-plus-contrib yapfify xterm-color ws-butler winum wgrep web-completion-data web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen undo-tree toml-mode toc-org test-simple tagedit symon string-inflection sql-indent spinner spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode scala-mode sass-mode restart-emacs request rainbow-delimiters racer pytest pyenv-mode py-isort pug-mode prop-menu popwin pkg-info pippel pipenv pcre2el password-generator ox-reveal org-projectile org-pomodoro org-bullets open-junk-file noflet neotree mvn multi-term move-text mmm-mode maven-test-mode markdown-toc magit-gitflow macrostep lorem-ipsum log4e loc-changes load-relative livid-mode linum-relative less-css-mode json-mode js-doc ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hlint-refactor hindent highlight-parentheses highlight-numbers highlight-indentation haskell-snippets groovy-imports gradle-mode goto-chg google-translate google-c-style golden-ratio gnuplot gntp git-messenger gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav disaster diminish company-tern company-statistics company-rtags company-math company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode clean-aindent-mode centered-cursor-mode cargo bind-key autothemer auto-highlight-symbol auctex-latexmk anaconda-mode aggressive-indent ace-window ac-ispell))))
+    (lsp-haskell lsp-ui lsp-python lsp-javascript-typescript typescript-mode company-lsp lsp-mode yasnippet-snippets yaml-mode web-mode realgud pyvenv proof-general pip-requirements persp-mode paradox overseer orgit org-present org-mime org-download org-brain nameless meghanada live-py-mode link-hint js2-refactor multiple-cursors intero idris-mode hy-mode hl-todo helm-make helm helm-core gruvbox-theme groovy-mode gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-link evil-org evil-nerd-commenter evil-matchit evil-magit eval-sexp-fu ensime sbt-mode emmet-mode editorconfig dumb-jump define-word dante lcr flycheck cython-mode counsel-projectile counsel-css counsel swiper company-web company-coq company-auctex company-anaconda clang-format auto-yasnippet auto-compile packed auctex adaptive-wrap ace-link avy company smartparens haskell-mode yasnippet htmlize rtags ivy magit magit-popup git-commit ghub with-editor alert projectile rust-mode js2-mode simple-httpd spaceline powerline s dash which-key use-package exec-path-from-shell async evil hydra org-plus-contrib yapfify xterm-color ws-butler winum wgrep web-completion-data web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen undo-tree toml-mode toc-org test-simple tagedit symon string-inflection sql-indent spinner spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode scala-mode sass-mode restart-emacs request rainbow-delimiters racer pytest pyenv-mode py-isort pug-mode prop-menu popwin pkg-info pippel pipenv pcre2el password-generator ox-reveal org-projectile org-pomodoro org-bullets open-junk-file noflet neotree mvn multi-term move-text mmm-mode maven-test-mode markdown-toc magit-gitflow macrostep lorem-ipsum log4e loc-changes load-relative livid-mode linum-relative less-css-mode json-mode js-doc ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide importmagic impatient-mode hungry-delete hlint-refactor hindent highlight-parentheses highlight-numbers highlight-indentation haskell-snippets groovy-imports gradle-mode goto-chg google-translate google-c-style golden-ratio gnuplot gntp git-messenger gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help elisp-slime-nav disaster diminish company-tern company-statistics company-rtags company-math company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers column-enforce-mode coffee-mode cmm-mode clean-aindent-mode centered-cursor-mode cargo bind-key autothemer auto-highlight-symbol anaconda-mode aggressive-indent ace-window ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
