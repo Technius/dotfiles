@@ -494,6 +494,10 @@ you should place your code here."
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
   (setq lsp-haskell-process-path-hie "hie-wrapper") ;; see emacs-lsp/lsp-haskell#16
+  ;; See https://github.com/haskell/haskell-mode/issues/1553#issuecomment-358373643
+  (setq haskell-process-args-stack-ghci
+        '("--ghci-options=-ferror-spans -fshow-loaded-modules"
+          "--no-build" "--no-load"))
 
   ;; Set default Python to Python 3
   (when (not (equal (executable-find "python3") nil))
