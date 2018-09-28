@@ -55,7 +55,7 @@ This function should only modify configuration layer settings."
      yaml
      (python :variables python-backend 'lsp)
      rust
-     javascript
+     (javascript :variables javascript-backend 'lsp)
      html
      sql
      (scala :variables
