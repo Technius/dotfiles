@@ -3,3 +3,4 @@
 .ensime*
 .DS_STORE
 /TODOS.org
+.mypy_cache
