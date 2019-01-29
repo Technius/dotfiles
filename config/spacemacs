@@ -494,6 +494,10 @@ you should place your code here."
 
   ;; Scala settings
   (use-package scala-mode
+    :init
+    (progn
+      (spacemacs|define-jump-handlers scala-mode)
+      (spacemacs//setup-lsp-jump-handler 'scala-mode))
     :config
     (setq-local scala-indent:align-parameters nil))
   (use-package sbt-mode)
