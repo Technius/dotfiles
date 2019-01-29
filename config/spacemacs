@@ -58,9 +58,10 @@ This function should only modify configuration layer settings."
      (javascript :variables javascript-backend 'lsp)
      html
      sql
-     (scala :variables
-            scala-auto-insert-asterisk-in-comments t
-            ensime-startup-notification nil)
+     ;; Prefer lsp-scala
+     ;; (scala :variables
+     ;;        scala-auto-insert-asterisk-in-comments t
+     ;;        ensime-startup-notification nil)
      (haskell :variables
               haskell-completion-backend 'ghci
               haskell-process-type 'stack-ghci)
@@ -93,6 +94,10 @@ This function should only modify configuration layer settings."
      gruvbox-theme
      autothemer
      (lsp-haskell :location (recipe :fetcher github :repo "emacs-lsp/lsp-haskell"))
+     ;; Scala
+     scala-mode
+     sbt-mode
+     (lsp-scala :location (recipe :fetcher github :repo "rossabaker/lsp-scala"))
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -486,10 +491,18 @@ you should place your code here."
   (display-time-mode t)
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
-  ;; Scala settings (override in configuration-layers doesn't work)
-  (add-hook 'scala-mode-hook
-            (lambda ()
-              (setq-local scala-indent:align-parameters nil)))
+
+  ;; Scala settings
+  (use-package scala-mode
+    :config
+    (setq-local scala-indent:align-parameters nil))
+  (use-package sbt-mode)
+  (use-package lsp-scala
+    :after scala-mode
+    :demand t)
+  (setq lsp-scala-server-command "metals-emacs")
+  (add-hook 'scala-mode-hook #'lsp)
+
   ;; Enable lsp-haskell
   (require 'lsp-haskell)
   (add-hook 'haskell-mode-hook #'lsp)
@@ -546,7 +559,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (treemacs-projectile treemacs-evil treemacs pfuture yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-mode web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen use-package toml-mode toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode proof-general prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-reveal overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet neotree nameless mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-rust lsp-python lsp-javascript-typescript lsp-java lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra indent-guide importmagic impatient-mode idris-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-make haskell-snippets gruvbox-theme groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish define-word cython-mode cquery counsel-projectile counsel-css company-web company-tern company-statistics company-rtags company-lsp company-ghci company-emacs-eclim company-coq company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode ccls cargo auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-window ace-link ac-ispell))))
+    (web-mode ivy-hydra gruvbox-theme define-word counsel-projectile company-lsp ace-link counsel swiper smartparens ivy lsp-mode magit treemacs pfuture avy projectile dash visual-fill-column org-plus-contrib yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key wgrep web-beautify wakatime-mode volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toml-mode toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smex smeargle slim-mode shell-pop scss-mode scala-mode sass-mode restart-emacs request rainbow-delimiters racer pyvenv pytest pyenv-mode py-isort pug-mode proof-general prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-reveal overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-scala lsp-haskell lorem-ipsum livid-mode live-py-mode link-hint json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose indent-guide importmagic impatient-mode idris-mode hungry-delete ht hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-make haskell-snippets google-translate google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy font-lock+ flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish cython-mode cquery counsel-css company-web company-tern company-statistics company-rtags company-ghci company-coq company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode cmm-mode clean-aindent-mode clang-format centered-cursor-mode ccls cargo autothemer auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-window ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
