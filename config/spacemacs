@@ -47,6 +47,8 @@ This function should only modify configuration layer settings."
                       ;; Use ctrl+l instead
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'cycle)
+
+     ;; General language layers
      lsp
      syntax-checking
 
@@ -523,6 +525,8 @@ you should place your code here."
 
   ;; Enable Flycheck for LSP
   (add-hook 'lsp-ui-mode-hook 'flycheck-mode)
+  ;; Prevent redundant flycheck
+  (setq flycheck-global-modes (delete 'haskell-mode flycheck-global-modes))
 
   ;; Latex auto preview
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
