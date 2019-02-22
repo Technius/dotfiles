@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      ;; General language layers
      lsp
      syntax-checking
+     spell-checking
 
      ;; Languages
      emacs-lisp
