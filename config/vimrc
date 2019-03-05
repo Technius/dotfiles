@@ -15,12 +15,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'derekwyatt/vim-scala'
-Plug 'ensime/ensime-vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 " Misc
-Plug 'wakatime/vim-wakatime'
+if executable("wakatime")
+    " Only enable wakatime if it exists on path (otherwise the annoying
+    " prompt will pop up)
+    Plug 'wakatime/vim-wakatime'
+endif
 
 " Neovim only {{{
 if has("nvim")
