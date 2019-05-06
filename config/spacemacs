@@ -67,7 +67,7 @@ This function should only modify configuration layer settings."
      ;;        scala-auto-insert-asterisk-in-comments t
      ;;        ensime-startup-notification nil)
      (haskell :variables
-              haskell-completion-backend 'ghci
+              haskell-completion-backend 'lsp
               haskell-process-type 'stack-ghci)
      idris
      (c-c++ :variables c-c++-enable-clang-support t)
@@ -526,8 +526,8 @@ before packages are loaded."
   (add-hook 'scala-mode-hook #'lsp)
 
   ;; Enable lsp-haskell
-  (use-package lsp-haskell :after haskell-mode)
-  (add-hook 'haskell-mode-hook #'lsp)
+  ;; (use-package lsp-haskell :after haskell-mode)
+  ;; (add-hook 'haskell-mode-hook #'lsp)
   (setq lsp-haskell-process-path-hie "hie-wrapper") ;; see emacs-lsp/lsp-haskell#16
   ;; See https://github.com/haskell/haskell-mode/issues/1553#issuecomment-358373643
   (setq haskell-process-args-stack-ghci
@@ -539,9 +539,9 @@ before packages are loaded."
     (setq python-shell-interpreter "python3"))
 
   ;; Enable Flycheck for LSP
-  (add-hook 'lsp-ui-mode-hook 'flycheck-mode)
+  ;; (add-hook 'lsp-ui-mode-hook 'flycheck-mode)
   ;; Prevent redundant flycheck
-  (setq flycheck-global-modes (delete 'haskell-mode flycheck-global-modes))
+  ;; (setq flycheck-global-modes (delete 'haskell-mode flycheck-global-modes))
 
   ;; Latex auto preview
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
