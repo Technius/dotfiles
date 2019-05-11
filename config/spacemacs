@@ -70,7 +70,9 @@ This function should only modify configuration layer settings."
               haskell-completion-backend 'lsp
               haskell-process-type 'stack-ghci)
      idris
-     (c-c++ :variables c-c++-enable-clang-support t)
+     (c-c++ :variables
+            c-c++-enable-clang-support t
+            c-c++-default-mode-for-headers 'c++-mode)
      latex
 
      ;; Integration
@@ -509,6 +511,11 @@ before packages are loaded."
   (display-time-mode t)
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
+
+  ;; C++ settings
+  (setq-default c-basic-offset 4)
+  (add-hook 'c++-mode-hook (lambda ()
+                             (add-to-list 'c-offsets-alist '(inlambda . 0))))
 
   ;; Scala settings
   (use-package scala-mode
