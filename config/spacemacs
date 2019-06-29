@@ -545,6 +545,10 @@ before packages are loaded."
   (when (not (equal (executable-find "python3") nil))
     (setq python-shell-interpreter "python3"))
 
+  ;; Rust settings
+  (add-hook 'toml-mode (lambda ()
+                         (when (eq buffer-file-name "Cargo.toml") (cargo-minor-mode))))
+
   ;; Enable Flycheck for LSP
   ;; (add-hook 'lsp-ui-mode-hook 'flycheck-mode)
   ;; Prevent redundant flycheck
