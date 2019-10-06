@@ -513,6 +513,9 @@ before packages are loaded."
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
 
+  ;; General display settings
+  (setq-default tab-width 4)
+
   ;; C++ settings
   (setq-default c-basic-offset 4)
   (add-hook 'c++-mode-hook (lambda ()
