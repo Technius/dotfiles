@@ -512,6 +512,8 @@ before packages are loaded."
   (display-time-mode t)
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
+  ;; Allow tramp to use .dir-locals
+  (setq enable-remote-dir-locals t)
 
   ;; General display settings
   (setq-default tab-width 4)
