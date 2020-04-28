@@ -62,13 +62,10 @@ This function should only modify configuration layer settings."
      (javascript :variables javascript-backend 'lsp)
      html
      sql
-     ;; Prefer lsp-scala
-     ;; (scala :variables
-     ;;        scala-auto-insert-asterisk-in-comments t
-     ;;        ensime-startup-notification nil)
      (haskell :variables
               haskell-completion-backend 'lsp
               haskell-process-type 'stack-ghci)
+     ocaml
      (scala :variables scala-backend 'scala-metals)
      idris
      (c-c++ :variables
