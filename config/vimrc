@@ -102,8 +102,8 @@ autocmd FileType lua setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType html setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType xml setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
-autocmd FileType cpp setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
-autocmd FileType c setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
+autocmd FileType cpp setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
+autocmd FileType c setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 autocmd FileType yaml setlocal expandtab shiftwidth=2 softtabstop=2 smartindent
 autocmd FileType sh setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
 autocmd FileType java setlocal expandtab shiftwidth=4 softtabstop=4 smartindent
@@ -118,22 +118,11 @@ let g:vim_json_syntax_conceal = 0
 " Enable neocomplete/deoplete {{{
 if has('nvim')
     let g:deoplete#enable_at_startup = 1
-    if !exists('g:deoplete#omni#input_patterns')
-        let g:deoplete#omni#input_patterns = {}
-    endif
     " Close on backspace
     inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
     " deoplete-jedi
     let g:deoplete#sources#jedi#show_docstring = 1
-
-    " ensime (scala), adapted from Jacoby6000 from
-    " https://github.com/ensime/ensime-vim/issues/282
-    let g:deoplete#omni#input_patterns.scala = [
-      \ '[^. *\t]\.\w*',
-      \ '[:\[,] ?\w*',
-      \ '^import .*'
-      \]
 else
     let g:neocomplete#enable_at_startup = 1
     " Close on backspace
