@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
             c-c++-default-mode-for-headers 'c++-mode)
      (cmake :variables cmake-enable-cmake-ide-support t)
      latex
+     solidity
 
      ;; Integration
      (shell :variables
@@ -562,6 +563,8 @@ before packages are loaded."
         ("$\\([[:alpha:]]\\([[:alpha:]]\\|[[:digit:]]\\)?+\\)" . font-lock-variable-name-face)))
     )
   (add-to-list 'auto-mode-alist '("\\.wat" . wasm-text-mode))
+
+  (add-to-list 'auto-mode-alist '("\\.sol" . solidity-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
