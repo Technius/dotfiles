@@ -539,6 +539,11 @@ before packages are loaded."
   ;; Prevent redundant flycheck
   ;; (setq flycheck-global-modes (delete 'haskell-mode flycheck-global-modes))
 
+  ;; Fix annoying lsp-ui doc popup focus issue. See
+  ;; https://github.com/emacs-lsp/lsp-ui/pull/381#issuecomment-585598390
+  (add-hook 'lsp-mode (lambda ()
+                        (add-to-list 'lsp-ui-doc-frame-parameters '(no-accept-focus . t))))
+
   ;; Latex auto preview
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (global-company-mode)
