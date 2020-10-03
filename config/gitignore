@@ -8,3 +8,7 @@
 # Scala
 .bloop
 .metals
+
+# C++
+.clangd
+compile_commands.json
