@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-VERSIONS="8.6.5 8.10.1"
-HLS_VERSION="0.2.1"
+VERSIONS="8.6.5 8.10.2"
+HLS_VERSION="0.5.1"
 
 URL_PREFIX="https://github.com/haskell/haskell-language-server/releases/download/${HLS_VERSION}"
 
