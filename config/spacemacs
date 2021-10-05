@@ -57,7 +57,9 @@ This function should only modify configuration layer settings."
      emacs-lisp
      markdown
      yaml
-     (python :variables python-backend 'lsp)
+     (python :variables
+             python-backend 'lsp
+             python-lsp-server 'pyright)
      rust
      (javascript :variables javascript-backend 'lsp)
      html
