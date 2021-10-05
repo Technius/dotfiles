@@ -527,8 +527,8 @@ before packages are loaded."
 
   ;; Enable Haskell Language Server if found
   (when (not (equal (executable-find "haskell-language-server-wrapper") nil))
-    (setq lsp-haskell-process-args-hie '("-d" "-l" "/tmp/hls.log"))
-    (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper"))
+    (setq lsp-haskell-process-args-hie '("exec" "haskell-language-server-wrapper" "--" "-d" "-l" "/tmp/hls.log"))
+    (setq lsp-haskell-process-path-hie "stack"))
 
   ;; Rust settings
   (add-hook 'toml-mode (lambda ()
