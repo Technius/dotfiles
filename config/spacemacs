@@ -615,6 +615,9 @@ before packages are loaded."
   (display-time-mode t)
   ;; Don't yank/paste to system clipboard
   (setq x-select-enable-clipboard nil)
+  ;; Save undo tree files in a sane location
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+
   ;; C, C++ settings
   (setq-default c-basic-offset 4)
   (add-hook 'c++-mode-hook (lambda ()
