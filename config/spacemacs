@@ -79,6 +79,7 @@ This function should only modify configuration layer settings."
      react
      ruby
      racket
+     nixos
 
      ;; Integration
      (shell :variables
