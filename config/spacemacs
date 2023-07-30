@@ -72,7 +72,8 @@ This function should only modify configuration layer settings."
      idris
      (c-c++ :variables
             c-c++-enable-clang-support t
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-dap-adapters '(dap-lldb))
      cmake
      latex
      solidity
@@ -713,6 +714,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(company-minimum-prefix-length 3)
+ '(dap-lldb-debug-program '("lldb-vscode"))
  '(enable-remote-dir-locals t)
  '(haskell-process-args-stack-ghci
    '("--ghci-options=-ferror-spans -fshow-loaded-modules" "--no-build" "--no-load" "--test"))
