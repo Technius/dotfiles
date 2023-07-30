@@ -639,6 +639,9 @@ before packages are loaded."
   (add-hook 'c++-mode-hook (lambda ()
                              (push '(inlambda . 0) c-offsets-alist)
                              (push '(brace-list-intro . '+) c-offsets-alist)))
+  ;; Disable annoying C++ autoformatting when typing
+  (add-hook 'c-mode-common-hook (lambda ()
+                                  (setq lsp-enable-on-type-formatting nil)))
 
   ;; Scala settings
   (add-hook 'scala-mode-hook (lambda ()
