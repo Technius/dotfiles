@@ -635,6 +635,10 @@ before packages are loaded."
   ;; Save undo tree files in a sane location
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+  ;; Set maximum line length for magit git commit prompt.
+  (add-hook 'git-commit-mode-hook (lambda ()
+                                    (setq-local fill-column 72)))
+
   ;; C, C++ settings
   (setq-default c-basic-offset 4)
   (add-hook 'c++-mode-hook (lambda ()
