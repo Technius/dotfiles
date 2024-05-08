@@ -4,6 +4,7 @@
 .DS_STORE
 /TODOS.org
 .mypy_cache
+.cache
 
 # Scala
 .bloop
