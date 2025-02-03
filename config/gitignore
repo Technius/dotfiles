@@ -5,6 +5,8 @@
 /TODOS.org
 .mypy_cache
 .cache
+.envrc
+.direnv/
 
 # Scala
 .bloop
