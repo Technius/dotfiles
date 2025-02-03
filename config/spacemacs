@@ -712,7 +712,8 @@ before packages are loaded."
                 (define-key vterm-mode-map (kbd "M-<left>") 'vterm-send-M-b)
                 (define-key vterm-mode-map (kbd "M-<right>") 'vterm-send-M-f)
                 )))
-  (add-hook 'after-init-hook 'envrc-global-mode)
+
+  (envrc-global-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
