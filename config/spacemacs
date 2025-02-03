@@ -701,6 +701,16 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.wat" . wasm-text-mode))
 
   (add-to-list 'auto-mode-alist '("\\.sol" . solidity-mode))
+
+  ;; Fix wonky vterm keybindings in macos
+  (if (eq system-type 'darwin)
+    (add-hook 'vterm-mode-hook
+              (lambda ()
+                ;; Allow Ctrl-C Ctrl-C in vterm to send keyboard interrupt
+                (define-key vterm-mode-map (kbd "C-c C-c") 'vterm--self-insert)
+                (define-key vterm-mode-map (kbd "M-<left>") 'vterm-send-M-b)
+                (define-key vterm-mode-map (kbd "M-<right>") 'vterm-send-M-f)
+                )))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
